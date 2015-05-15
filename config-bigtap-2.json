@@ -1,4 +1,5 @@
 {
+/kokokoko
   "applications" : {
     "bigchain" : {
       "chain" : [ {
@@ -12,45 +13,6 @@
           "instance" : 1,
           "span-name" : "Span1"
         },
-        "endpoint2-drop" : false,
-        "endpoint2-span" : {
-          "instance" : 1,
-          "span-name" : "Span1"
-        },
-        "name" : "Chain1-Switch1",
-        "service" : [ {
-          "instance" : 1,
-          "optional" : false,
-          "sequence" : 1,
-          "service-name" : "Service1-SSL"
-        }, {
-          "instance" : 1,
-          "optional" : false,
-          "sequence" : 2,
-          "service-name" : "Service2-TPS"
-        } ]
-      } ],
-      "service" : [ {
-        "description" : "Connected to Blue Coat SSL Appliance",
-        "health-check" : {
-          "enable" : true,
-          "fail-action-mark-down" : false
-        },
-        "instance" : [ {
-          "id" : 1,
-          "in-skip" : false,
-          "interface-pair" : {
-            "in" : "ethernet15",
-            "out" : "ethernet16",
-            "switch" : "00:00:70:72:cf:bd:e1:5c"
-          },
-          "out-skip" : false
-        } ],
-        "name" : "Service1-SSL",
-        "policy" : {
-          "action" : "do-service"
-        },
-        "type" : "ssl"
       }, {
         "description" : "Connected to A10 TPS appliance",
         "health-check" : {
