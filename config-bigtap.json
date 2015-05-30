@@ -1,8 +1,6 @@
 {
   "applications" : {
     "bigchain" : {
-      "chain" : [ {
-        "endpoint-pair" : {
           "endpoint1" : "ethernet12",
           "endpoint2" : "port-channel1",
           "switch" : "00:00:70:72:cf:bd:e1:5c"
