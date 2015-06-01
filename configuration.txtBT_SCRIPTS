@@ -1,11 +1,3 @@
- show run
-!
-! Big Tap Controller 4.6.0 (2015.05.15.2227-b.bsc.corsair-4.6.0)
-ntp server 0.bigswitch.pool.ntp.org
-
-! snmp-server
-snmp-server enable traps
-
 ! aaa
 aaa accounting exec default start-stop local
 
