@@ -1,7 +1,7 @@
  show run
 !
 ! Big Tap Controller 4.6.0 (2015.05.15.2227-b.bsc.corsair-4.6.0)
-! Current Time: 2015-06-02.00:53:32
+! Current Time: 2015-06-02.01:02:46
 !
 version 1.0
 
@@ -159,8 +159,6 @@ bigchain chain chain1
   use-service service_ssl instance 1 sequence 1 optional
 
 ! bigtap
-bigtap policy balaaaaa rbac-permission admin-view owner admin
-
 bigtap policy syed rbac-permission admin-view owner admin
 
 bigtap policy ted-demo rbac-permission admin-view owner admin
