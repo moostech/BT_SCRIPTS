@@ -1,7 +1,7 @@
  show run
 !
 ! Big Tap Controller 4.6.0 (2015.05.15.2227-b.bsc.corsair-4.6.0)
-! Current Time: 2015-06-02.19:23:36
+! Current Time: 2015-06-03.07:02:20
 !
 version 1.0
 
@@ -75,7 +75,7 @@ switch 00:00:70:72:cf:b6:1c:40
     bigtap role filter interface-name facing_H1_eth1
   interface ethernet2
   interface ethernet5
-    bigtap role delivery interface-name Extrahop_tool
+    bigtap role delivery interface-name Cyphort_Collector2_Extrahop_tool
   interface ethernet6
     bigtap role filter interface-name span_port_eth6
   interface ethernet8
@@ -159,7 +159,14 @@ bigchain chain chain1
   use-service service_ssl instance 1 sequence 1 optional
 
 ! bigtap
-bigtap policy demo123 rbac-permission admin-view owner admin
+bigtap policy cyphort-demo rbac-permission admin-view owner admin
+  action forward
+  delivery-interface Cyphort_Collector2_Extrahop_tool
+  filter-interface ixia_H2_eth2
+  filter-interface span_port_eth6
+  priority 100
+  start 1433279040 duration 0
+  1 match any
 
-bigtap policy syed rbac-permission admin-view owner admin
+bigtap policy mahhhhhhhhhhhhhhhh rbac-permission admin-view owner admin
 bigtap-controller-a
