@@ -1,7 +1,7 @@
  show run
 !
 ! Big Tap Controller 4.6.0 (2015.05.15.2227-b.bsc.corsair-4.6.0)
-! Current Time: 2015-06-03.21:22:40
+! Current Time: 2015-06-03.21:22:53
 !
 version 1.0
 
@@ -159,8 +159,6 @@ bigchain chain chain1
   use-service service_ssl instance 1 sequence 1 optional
 
 ! bigtap
-bigtap policy again-demo rbac-permission admin-view owner admin
-
 bigtap policy cyphort-demo rbac-permission admin-view owner admin
   action forward
   delivery-interface Cyphort_Collector2_Extrahop_tool
@@ -179,6 +177,4 @@ bigtap policy policy-admin551105 rbac-permission admin-view owner admin
   priority 100
   start 1433365476 duration 0
   1 match any
-
-bigtap policy praful-demo rbac-permission admin-view owner admin
 bigtap-controller-a
