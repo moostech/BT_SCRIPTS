@@ -1,7 +1,7 @@
  show run
 !
 ! Big Tap Controller 4.6.0 (2015.05.15.2227-b.bsc.corsair-4.6.0)
-! Current Time: 2015-06-03.20:59:07
+! Current Time: 2015-06-03.21:04:39
 !
 version 1.0
 
@@ -171,6 +171,14 @@ bigtap policy cyphort-demo rbac-permission admin-view owner admin
   1 match any
 
 bigtap policy mahhhhhhhhhhhhhhhh rbac-permission admin-view owner admin
+
+bigtap policy policy-admin551105 rbac-permission admin-view owner admin
+  action forward
+  delivery-interface FireEye_NX_Appliance_eth20
+  filter-interface ixia_H2_eth2
+  priority 100
+  start 1433365476 duration 0
+  1 match any
 
 bigtap policy praful-demo rbac-permission admin-view owner admin
 bigtap-controller-a
