@@ -1,7 +1,7 @@
  show run
 !
-! Big Tap Controller 4.6.0 (2015.05.15.2227-b.bsc.corsair-4.6.0)
-! Current Time: 2015-06-04.20:20:42
+! Big Tap Controller 4.8.0 (2015.06.05.1348-m.bsc.bigdb)
+! Current Time: 2015-06-08.18:35:58
 !
 version 1.0
 
@@ -36,6 +36,14 @@ no bigtap auto-delivery-interface-strip-vlan
 no bigtap auto-filter-interface-vlan-rewrite
 
 ! user
+user ROuser
+  full-name 'read only user1'
+  hashed-password method=PBKDF2WithHmacSHA1,salt=e9eRCbe3RJyCvnIg5v6_AA,rounds=10000,w382C133T4dWLcRjLaI4lCnevxFFV4_SfDKM__VDZIs
+
+user S1user
+  full-name 'security user1'
+  hashed-password method=PBKDF2WithHmacSHA1,salt=JqINNPm1KNy8xVt3d5WJng,rounds=10000,3OpWPt_c9rGXltlIwesqyHkzkYaEZCQRaNV4rKsUP5g
+
 user admin
   full-name 'Default admin'
   hashed-password method=PBKDF2WithHmacSHA1,salt=f60ucfdnuR6J_EY1dVNzIA,rounds=10000,DV3uFZDM2-qEZiP97Cct7WeBfl6FmrWtmU6Fr6XQtvg
@@ -46,6 +54,11 @@ group admin
   associate user admin
 
 group read-only
+  associate user ROuser
+
+group security-group
+  associate rbac-permission security-permission
+  associate user S1user
 
 ! controller-node
 controller-node 20c1e6bb-13d9-4598-a9d8-3876d96d9cc9
@@ -123,6 +136,18 @@ switch 00:00:90:b1:1c:f4:cb:a9
 ! rbac-permission
 rbac-permission admin-view bigtap
 
+rbac-permission security-permission bigtap
+  1 match ip src-ip 10.0.0.0 255.255.0.0
+  allow delivery-interface Cyphort_Collector2_Extrahop_tool
+  allow delivery-interface FireEye_NX_Appliance_eth20
+  allow delivery-interface FireEye_NX_Appliance_eth28
+  allow filter-interface ixia_H2_eth2
+  allow filter-interface span_port_eth8
+  allow service allow-all
+  no allow action allow-packet-capture
+  no allow delivery-interface allow-all
+  no allow filter-interface allow-all
+
 ! bigchain
 bigchain user-defined-offset
 
@@ -142,25 +167,31 @@ bigtap user-defined-offset
   udf3 l4-start offset 32
 
 ! bigchain
+bigchain service server_tps
+  description 'A10 TPS'
+  type all
+  instance 1
+    interface-pair switch 00:00:70:72:cf:bd:e1:5c in ethernet21 out ethernet22
+
 bigchain service service_ssl
   description bluecoat
   type ssl
   instance 1
     interface-pair switch 00:00:70:72:cf:bd:e1:5c in ethernet15 out ethernet16
 
-bigchain span-service span1
+bigchain span-service Span
+  description 'Span to BT'
   instance 1
-    span-interface switch 00:00:70:72:cf:bd:e1:5c interface ethernet47
 
 bigchain chain chain1
   endpoint-pair switch 00:00:70:72:cf:bd:e1:5c endpoint1 ethernet48 endpoint2 port-channel1
-  endpoint1-span span1 instance 1
-  endpoint2-span span1 instance 1
+  endpoint1-span Span instance 1
+  use-service server_tps instance 1 sequence 2 optional
   use-service service_ssl instance 1 sequence 1 optional
 
 ! bigtap
 bigtap policy cyphort-demo rbac-permission admin-view owner admin
-  action forward
+  action inactive
   delivery-interface Cyphort_Collector2_Extrahop_tool
   filter-interface ixia_H2_eth2
   filter-interface span_port_eth6
@@ -168,13 +199,5 @@ bigtap policy cyphort-demo rbac-permission admin-view owner admin
   start 1433279040 duration 0
   1 match any
 
-bigtap policy mahhhhhhhhhhhhhhhh rbac-permission admin-view owner admin
-
-bigtap policy policy-admin992106 rbac-permission admin-view owner admin
-  action forward
-  delivery-interface FireEye_NX_Appliance_eth20
-  filter-interface ixia_H2_eth2
-  priority 100
-  start 1433449239 duration 0
-  1 match any
+bigtap policy demo1 rbac-permission security-permission owner S1user
 bigtap-controller-a
