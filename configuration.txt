@@ -1,7 +1,7 @@
  show run
 !
 ! Big Tap Controller 4.8.0 (2015.06.05.1348-m.bsc.bigdb)
-! Current Time: 2015-06-09.00:34:25
+! Current Time: 2015-06-09.23:58:28
 !
 version 1.0
 
@@ -167,27 +167,28 @@ bigtap user-defined-offset
   udf3 l4-start offset 32
 
 ! bigchain
-bigchain service server_tps
-  description 'A10 TPS'
-  type all
-  instance 1
-    interface-pair switch 00:00:70:72:cf:bd:e1:5c in ethernet21 out ethernet22
-
 bigchain service service_ssl
   description bluecoat
   type ssl
   instance 1
     interface-pair switch 00:00:70:72:cf:bd:e1:5c in ethernet15 out ethernet16
 
+bigchain service service_tps
+  description 'Connected to A10'
+  type all
+  instance 1
+    interface-pair switch 00:00:70:72:cf:bd:e1:5c in ethernet21 out ethernet22
+
 bigchain span-service Span
   description 'Span to BT'
   instance 1
 
 bigchain chain chain1
-  endpoint-pair switch 00:00:70:72:cf:bd:e1:5c endpoint1 ethernet48 endpoint2 port-channel1
+  endpoint-pair switch 00:00:70:72:cf:bd:e1:5c endpoint1 ethernet47 endpoint2 port-channel1
   endpoint1-span Span instance 1
-  use-service server_tps instance 1 sequence 2 optional
+  endpoint2-span Span instance 1
   use-service service_ssl instance 1 sequence 1 optional
+  use-service service_tps instance 1 sequence 2
 
 ! bigtap
 bigtap policy cyphort-demo rbac-permission admin-view owner admin
@@ -198,6 +199,4 @@ bigtap policy cyphort-demo rbac-permission admin-view owner admin
   priority 100
   start 1433279040 duration 0
   1 match any
-
-bigtap policy demo1 rbac-permission security-permission owner S1user
 bigtap-controller-a
