@@ -1,7 +1,7 @@
  show run
 !
 ! Big Tap Controller 4.8.0 (2015.06.05.1348-m.bsc.bigdb)
-! Current Time: 2015-06-11.23:19:50
+! Current Time: 2015-06-11.23:50:07
 !
 version 1.0
 
@@ -206,6 +206,14 @@ bigtap policy cyphort-demo rbac-permission admin-view owner admin
   1 match any
 
 bigtap policy demo-policy rbac-permission admin-view owner admin2
+
+bigtap policy policy-admin2351925 rbac-permission admin-view owner admin2
+  action forward
+  delivery-interface FireEye_NX_Appliance_eth20
+  filter-interface facing_H2_eth3
+  priority 100
+  start 1434066603 duration 0
+  1 match any
 
 bigtap policy policy-admin925283 rbac-permission admin-view owner admin
   action forward
