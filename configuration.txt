@@ -1,7 +1,7 @@
  show run
 !
 ! Big Tap Controller 4.8.0 (2015.06.05.1348-m.bsc.bigdb)
-! Current Time: 2015-06-11.23:15:29
+! Current Time: 2015-06-11.23:16:53
 !
 version 1.0
 
@@ -48,10 +48,15 @@ user admin
   full-name 'Default admin'
   hashed-password method=PBKDF2WithHmacSHA1,salt=f60ucfdnuR6J_EY1dVNzIA,rounds=10000,DV3uFZDM2-qEZiP97Cct7WeBfl6FmrWtmU6Fr6XQtvg
 
+user admin2
+  full-name 'admin2 bsn'
+  hashed-password method=PBKDF2WithHmacSHA1,salt=Tcy8Qi9BNZa3MobKJSmLtQ,rounds=10000,NpvWuLBKjZsLhEbSOu4MaDLkoQzdmw9X86ZQxmvRcNo
+
 ! group
 group admin
   associate rbac-permission admin-view
   associate user admin
+  associate user admin2
 
 group read-only
   associate user ROuser
