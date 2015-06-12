@@ -3,3 +3,34 @@ Date is: Jun 12 03:39:13
 Configuration operation performed is: create
 Configuration details: Attempt to create policy: policy-admin2746946
 
+Last configuration change was done by user: admin2
+Date is: Jun 12 03:39:13
+Configuration operation performed is: create
+Configuration details: Attempt to create policy: policy-admin2746946
+Date is: Jun 12 03:54:37
+Configuration operation performed is: Delete
+Configuration details: Attempt to Delete policy: p222222
+Date is: Jun 12 03:57:29
+Configuration operation performed is: Delete
+Configuration details: Attempt to Delete policy: policy-admin666666
+Date is: Jun 12 03:58:48
+Configuration operation performed is: create
+Configuration details: Attempt to create policy: p2222222
+
+Last configuration change was done by user: admin2
+Date is: Jun 12 03:39:13
+Configuration operation performed is: create
+Configuration details: Attempt to create policy: policy-admin2746946
+Date is: Jun 12 03:54:37
+Configuration operation performed is: Delete
+Configuration details: Attempt to Delete policy: p222222
+Date is: Jun 12 03:57:29
+Configuration operation performed is: Delete
+Configuration details: Attempt to Delete policy: policy-admin666666
+Date is: Jun 12 03:58:48
+Configuration operation performed is: create
+Configuration details: Attempt to create policy: p2222222
+Date is: Jun 12 04:00:04
+Configuration operation performed is: create
+Configuration details: Attempt to create policy: p55555
+
