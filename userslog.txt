@@ -1,16 +1,8 @@
-Last logged in user: admin
+Last logged in user: admin2
+Date is: Jun 12 03:22:16
 Configuration operation performed is: Delete
-Configuration details: Attempt to Delete policy: policy-admin424170
-Configuration operation performed is: create
-Configuration details: Attempt to create policy: policy-admin424170
+Configuration details: Attempt to Delete policy: ooooo
+Date is: Jun 12 03:23:13
 Configuration operation performed is: Delete
-Configuration details: Attempt to Delete policy: policy-admin424170
-Configuration operation performed is: create
-Configuration details: Attempt to create policy: policy-admin424170
-Configuration operation performed is: Delete
-Configuration details: Attempt to Delete policy: policy-admin424170
-Configuration operation performed is: Delete
-Configuration details: Attempt to Delete policy: policy-admin799773
-Configuration operation performed is: create
-Configuration details: Attempt to create policy: policy-nnnnnnnnnnn
+Configuration details: Attempt to Delete policy: policy-admin555
 
