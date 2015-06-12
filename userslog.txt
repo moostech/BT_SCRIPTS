@@ -1,8 +1,5 @@
-Last logged in user: admin
-Date is: Jun 12 03:28:49
+Last configuration change was done by user: admin2
+Date is: Jun 12 03:39:13
 Configuration operation performed is: create
-Configuration details: Attempt to create policy: p222222
-Date is: Jun 12 03:32:13
-Configuration operation performed is: Delete
-Configuration details: Attempt to Delete policy: mytest
+Configuration details: Attempt to create policy: policy-admin2746946
 
