@@ -54,3 +54,8 @@ Date is: Jun 12 04:01:05
 Configuration operation performed is: create
 Configuration details: Attempt to create policy: p8888
 
+Last configuration change was done by user: admin
+Date is: Jun 12 04:03:26
+Configuration operation performed is: create
+Configuration details: Attempt to create policy: ppppppp111
+
