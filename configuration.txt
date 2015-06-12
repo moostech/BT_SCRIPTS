@@ -1,7 +1,7 @@
  show run
 !
 ! Big Tap Controller 4.8.0 (2015.06.05.1348-m.bsc.bigdb)
-! Current Time: 2015-06-12.04:03:31
+! Current Time: 2015-06-12.04:06:00
 !
 version 1.0
 
@@ -216,11 +216,6 @@ bigtap policy p55555 rbac-permission admin-view owner admin2
   action inactive
   priority 100
   start 1434081604 duration 0
-
-bigtap policy p8888 rbac-permission admin-view owner admin2
-  action inactive
-  priority 100
-  start 1434081665 duration 0
 
 bigtap policy policy-admin2746946 rbac-permission admin-view owner admin2
   action forward
