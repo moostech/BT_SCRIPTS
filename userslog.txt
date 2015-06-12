@@ -5,4 +5,7 @@ Configuration details: Attempt to Delete policy: ooooo
 Date is: Jun 12 03:23:13
 Configuration operation performed is: Delete
 Configuration details: Attempt to Delete policy: policy-admin555
+Date is: Jun 12 03:25:17
+Configuration operation performed is: create
+Configuration details: Attempt to create policy: mytest
 
