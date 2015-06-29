@@ -73,3 +73,9 @@ Last configuration change was done by user: admin2
 Date is: Jun 29 17:25:23
 Configuration details: Attempt to Delete policy: david-demo
 
+Last configuration change was done by user: admin2
+Date is: Jun 29 17:25:23
+Configuration details: Attempt to Delete policy: david-demo
+Date is: Jun 29 18:21:44
+Configuration details: Attempt to create policy: adad
+
