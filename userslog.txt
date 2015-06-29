@@ -223,3 +223,29 @@ Configuration details: Attempt to create policy: vvvv
 Date is: Jun 29 19:05:08
 Configuration details: Attempt to Delete policy: vvvv
 
+Last configuration change was done by user: admin2
+Date is: Jun 29 17:25:23
+Configuration details: Attempt to Delete policy: david-demo
+Date is: Jun 29 18:21:44
+Configuration details: Attempt to create policy: adad
+Date is: Jun 29 18:22:27
+Configuration details: Attempt to Delete policy: adad
+Date is: Jun 29 18:23:41
+Configuration details: Attempt to create policy: qqqqq
+Date is: Jun 29 18:24:27
+Configuration details: Attempt to Delete policy: qqqqq
+Date is: Jun 29 18:47:50
+Configuration details: Attempt to create policy: ssssss
+Date is: Jun 29 18:51:50
+Configuration details: Attempt to create policy: zzzzzzz
+Date is: Jun 29 18:55:07
+Configuration details: Attempt to Delete policy: zzzzzzz
+Date is: Jun 29 18:56:38
+Configuration details: Attempt to create policy: wwwww
+Date is: Jun 29 19:04:23
+Configuration details: Attempt to create policy: vvvv
+Date is: Jun 29 19:05:08
+Configuration details: Attempt to Delete policy: vvvv
+Date is: Jun 29 19:06:31
+Configuration details: Attempt to create policy: wwwww_copy
+
