@@ -1,7 +1,7 @@
  show run
 !
 ! Big Tap Controller 4.8.0 (2015.06.11.2101-m.bsc.bigdb)
-! Current Time: 2015-06-29.19:39:13
+! Current Time: 2015-06-29.20:00:37
 !
 version 1.0
 
@@ -188,10 +188,4 @@ bigtap policy cyphort-demo-policy rbac-permission admin-view owner admin
   priority 100
   start 1434561960 duration 0
   1 match any
-
-bigtap policy kyle-demo-policy rbac-permission admin-view owner admin
-  action inactive
-  description asdasd
-  priority 100
-  start 1435606750 duration 0
 bigtap-controller-a

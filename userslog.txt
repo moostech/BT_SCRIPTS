@@ -543,3 +543,9 @@ Last configuration change was done by user: admin
 Date is: Jun 29 19:39:09
 Configuration details: Attempt to create policy: kyle-demo-policy
 
+Last configuration change was done by user: admin
+Date is: Jun 29 19:39:09
+Configuration details: Attempt to create policy: kyle-demo-policy
+Date is: Jun 29 20:00:33
+Configuration details: Attempt to Delete policy: kyle-demo-policy
+
