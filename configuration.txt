@@ -1,7 +1,7 @@
  show run
 !
-! Big Tap Controller 4.8.0 (2015.06.05.1348-m.bsc.bigdb)
-! Current Time: 2015-06-12.22:54:47
+! Big Tap Controller 4.8.0 (2015.06.11.2101-m.bsc.bigdb)
+! Current Time: 2015-06-29.17:25:27
 !
 version 1.0
 
@@ -61,10 +61,6 @@ group admin
 group read-only
   associate user ROuser
 
-group security-group
-  associate rbac-permission security-permission
-  associate user S1user
-
 ! controller-node
 controller-node 20c1e6bb-13d9-4598-a9d8-3876d96d9cc9
   controller-alias bigtap-controller-a
@@ -90,10 +86,9 @@ switch 00:00:70:72:cf:b6:17:18
 switch 00:00:70:72:cf:b6:1c:40
   switch-alias Filter-Switch-1
   interface ethernet1
-    bigtap role filter interface-name facing_H1_eth1
   interface ethernet2
   interface ethernet5
-    bigtap role delivery interface-name Cyphort_Collector2_Extrahop_tool
+    bigtap role delivery interface-name c2_Extrahop_tool
   interface ethernet6
     bigtap role filter interface-name span_port_eth6
   interface ethernet8
@@ -111,12 +106,12 @@ switch 00:00:70:72:cf:bd:dc:28
 switch 00:00:70:72:cf:bd:dc:bc
   switch-alias Delivery-Switch-1
   interface ethernet1
-    bigtap role delivery interface-name cyph_H2_eth1
+    bigtap role delivery interface-name c1_H2_eth1
   interface ethernet10
   interface ethernet11
   interface ethernet2
   interface ethernet20
-    bigtap role delivery interface-name FireEye_NX_Appliance_eth20
+    bigtap role delivery interface-name Cyphort_Collector_eth20
   interface ethernet3
 
 switch 00:00:70:72:cf:bd:e1:5c
@@ -130,28 +125,14 @@ switch 00:00:70:72:cf:d6:6b:ec
 switch 00:00:90:b1:1c:f4:cb:a9
   switch-alias Core-Switch-2-dells6000
   interface ethernet6/1
-    bigtap role delivery interface-name facing_H1_eth2
   interface ethernet6/2
     bigtap role filter interface-name span_bc2_eth6-2
   interface ethernet6/3
     bigtap role filter interface-name span_bc1_eth6-3
   interface ethernet6/4
-    bigtap role delivery interface-name facing_H1_eth3
 
 ! rbac-permission
 rbac-permission admin-view bigtap
-
-rbac-permission security-permission bigtap
-  1 match ip src-ip 10.0.0.0 255.255.0.0
-  allow delivery-interface Cyphort_Collector2_Extrahop_tool
-  allow delivery-interface FireEye_NX_Appliance_eth20
-  allow delivery-interface FireEye_NX_Appliance_eth28
-  allow filter-interface ixia_H2_eth2
-  allow filter-interface span_port_eth8
-  allow service allow-all
-  no allow action allow-packet-capture
-  no allow delivery-interface allow-all
-  no allow filter-interface allow-all
 
 ! bigchain
 bigchain user-defined-offset
@@ -172,69 +153,39 @@ bigtap user-defined-offset
   udf3 l4-start offset 32
 
 ! bigchain
-bigchain service service_ssl
-  description bluecoat
-  type ssl
+bigchain service SSL
+  description SSL
+  health-check enable fail-action-mark-down
+  type custom
+  10 match tcp dst-port 443
+  20 match tcp src-port 443
+  30 match tcp dst-port 8443
+  40 match tcp src-port 8443
+  41 match ip l4-offset 8 value 768 mask 65535
   instance 1
     interface-pair switch 00:00:70:72:cf:bd:e1:5c in ethernet15 out ethernet16
-
-bigchain service service_tps
-  description 'Connected to A10'
-  type all
-  instance 1
-    interface-pair switch 00:00:70:72:cf:bd:e1:5c in ethernet21 out ethernet22
 
 bigchain span-service Span
   description 'Span to BT'
   instance 1
 
-bigchain chain chain1
-  endpoint-pair switch 00:00:70:72:cf:bd:e1:5c endpoint1 ethernet47 endpoint2 port-channel1
+bigchain chain chain-demo
+  endpoint-pair switch 00:00:70:72:cf:bd:e1:5c endpoint1 ethernet48 endpoint2 port-channel1
   endpoint1-span Span instance 1
   endpoint2-span Span instance 1
-  use-service service_ssl instance 1 sequence 1 optional
-  use-service service_tps instance 1 sequence 2
+  use-service SSL instance 1 sequence 1
 
 ! bigtap
-bigtap policy cyphort-demo rbac-permission admin-view owner admin
-  action inactive
-  delivery-interface Cyphort_Collector2_Extrahop_tool
-  filter-interface ixia_H2_eth2
+bigtap policy P-cap rbac-permission admin-view owner admin
+  action capture
+  priority 100
+  start 1435167221 duration 2
+
+bigtap policy cyphort-demo-policy rbac-permission admin-view owner admin
+  action forward
+  delivery-interface Cyphort_Collector_eth20
   filter-interface span_port_eth6
   priority 100
-  start 1433279040 duration 0
+  start 1434561960 duration 0
   1 match any
-
-bigtap policy demo-policy rbac-permission admin-view owner admin2
-
-bigtap policy p2222222 rbac-permission admin-view owner admin2
-  action inactive
-  priority 100
-  start 1434081529 duration 0
-
-bigtap policy p55555 rbac-permission admin-view owner admin2
-  action inactive
-  priority 100
-  start 1434081604 duration 0
-
-bigtap policy policy-admin2746946 rbac-permission admin-view owner admin2
-  action forward
-  delivery-interface all
-  filter-interface span_bc1_eth6-3
-  priority 100
-  start 1434080354 duration 0
-  1 match any
-
-bigtap policy policy-demo-jeffff rbac-permission admin-view owner admin2
-  action forward
-  delivery-interface facing_H1_eth3
-  filter-interface span_bc2_eth6-2
-  priority 100
-  start 1434149685 duration 0
-  1 match any
-
-bigtap policy ppppppp111 rbac-permission admin-view owner admin
-  action inactive
-  priority 100
-  start 1434081807 duration 0
 bigtap-controller-a
